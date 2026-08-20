@@ -51,7 +51,7 @@ const rs = [
 
 export function ThreeRs() {
   const [active, setActive] = useState(0);
-  const current = rs[active];
+  const current = rs[active]!;
   const Icon = current.icon;
 
   return (
