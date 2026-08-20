@@ -1,24 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useReveal } from "@/hooks/use-reveal";
+import { TopBar } from "@/components/site/TopBar";
+import { Hero } from "@/components/site/Hero";
+import { Marquee } from "@/components/site/Marquee";
+import { ThreeRs } from "@/components/site/ThreeRs";
+import { SortGame } from "@/components/site/SortGame";
+import { Impact } from "@/components/site/Impact";
+import { Habits } from "@/components/site/Habits";
+import { Ods12 } from "@/components/site/Ods12";
+import { Quiz } from "@/components/site/Quiz";
+import { Footer } from "@/components/site/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "CicloVivo — Reduzir, Reutilizar e Reciclar com a ODS 12";
+const description =
+  "Site interativo para aprender os 3 Rs na prática: jogo da coleta seletiva, calculadora de impacto, quiz e as metas da ODS 12 da ONU.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  useReveal();
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <TopBar />
+      <Hero />
+      <Marquee />
+      <ThreeRs />
+      <SortGame />
+      <Impact />
+      <Habits />
+      <Ods12 />
+      <Quiz />
+      <Footer />
+    </main>
   );
 }
